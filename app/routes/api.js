@@ -20,12 +20,8 @@ function createToken(user) {
 	return token;
 
 }
-
 module.exports = function(app, express, io) {
-
-
 	var api = express.Router();
-
 	api.get('/all_stories', function(req, res) {
 		
 		Story.find({}, function(err, stories) {
@@ -36,7 +32,6 @@ module.exports = function(app, express, io) {
 			res.json(stories);
 		});
 	});
-
 	api.post('/signup', function(req, res) {
 
 		var user = new User({
@@ -58,8 +53,6 @@ module.exports = function(app, express, io) {
 			});
 		});
 	});
-
-
 	api.get('/users', function(req, res) {
 
 		User.find({}, function(err, users) {
@@ -72,7 +65,6 @@ module.exports = function(app, express, io) {
 
 		});
 	});
-
 	api.post('/login', function(req, res) {
 
 		User.findOne({ 
@@ -133,8 +125,6 @@ module.exports = function(app, express, io) {
 
 	});
 
-	
-
 	// Destination B // provide a legitimate token
 
 	api.route('/')
@@ -174,11 +164,5 @@ module.exports = function(app, express, io) {
 	api.get('/me', function(req, res) {
 		res.send(req.decoded);
 	});
-
-
-
-
 	return api;
-
-
 }
